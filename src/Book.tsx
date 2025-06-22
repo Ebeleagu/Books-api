@@ -25,7 +25,6 @@ export default function Products() {
 
   const [debouncedQuery, setDebouncedQuery] = useState<string>(query);
 
-  
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedQuery(query);
@@ -65,12 +64,10 @@ export default function Products() {
     }
   }, []);
 
-  
   useEffect(() => {
     fetchBooks(debouncedQuery);
   }, [debouncedQuery, fetchBooks]);
 
-  
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     fetchBooks(query);
@@ -82,7 +79,6 @@ export default function Products() {
       role="region"
       aria-label="Book search results"
     >
-      
       <form
         onSubmit={handleSearch}
         className="w-full max-w-3xl flex flex-wrap mb-6"
@@ -103,21 +99,18 @@ export default function Products() {
         </button>
       </form>
 
-      
       {isLoading && (
         <div className="text-center mb-4">
           <p className="text-xl font-semibold font-mono">Loading books...</p>
         </div>
       )}
 
-   
       {error && (
         <div className="text-center mb-4 text-red-600 max-w-2xl">
           <p className="text-xl font-mono">{error}</p>
         </div>
       )}
 
-      
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4 w-full max-w-7xl">
         {books.length === 0 && !isLoading && !error && (
           <p className="col-span-full text-center text-lg font-semibold font-mono">
